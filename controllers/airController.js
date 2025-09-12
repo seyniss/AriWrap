@@ -33,6 +33,7 @@ exports.createAir = async (req, res) => {
 // GET /air - 전체 데이터 조회
 exports.getAllAirs = async (req, res) => {
     try {
+        console.log("GET /air 요청이 도달했습니다."); // 로그 추가
         const airs = await Air.find().sort({ createdAt: -1 });  // 최신 데이터부터 조회
         res.status(200).json(airs);
     } catch (error) {

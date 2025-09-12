@@ -2,14 +2,12 @@ const dotenv = require("dotenv");
 dotenv.config();
 const express = require("express");
 const mongoose = require("mongoose");
-// const cors = require("cors"); // CORS 미들웨어 제거
 // const cookieParser = require("cookie-parser"); // 쿠키 파서 미들웨어 제거
 const airRoutes = require("./routes/airRoutes"); // 라우트 임포트
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// 미들웨어 설정 (CORS 및 쿠키 관련 설정 제거)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
