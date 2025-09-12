@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
     origin: process.env.FRONT_ORIGIN,
-    credentials: true
+    credentials: false
 }));
 
 // MongoDB 연결
