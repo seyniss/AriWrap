@@ -4,7 +4,7 @@ const Air = require("../models/Air"); // Air 모델 임포트
 // POST /air - 데이터 저장
 exports.createAir = async (req, res) => {
     try {
-        const { classId, password, temp, hum } = req.body;
+        const { classId, password, temp, hum, createdAt } = req.body;
 
         // 필수 필드 체크
         if (!classId || !password || !temp || !hum) {
@@ -17,6 +17,7 @@ exports.createAir = async (req, res) => {
             password,
             temp,
             hum,
+            createdAt,
         });
 
         // DB에 저장

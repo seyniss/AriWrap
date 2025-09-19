@@ -12,15 +12,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // MongoDB 연결
-mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 20000,
-})
-.then(() => {
+mongoose.connect(process.env.MONGO_URI).then(() => {
     console.log("DB 연결 성공");
-})
-.catch((error) => {
+}).catch((error) => {
     console.error("DB 연결 실패", error);
 });
 
