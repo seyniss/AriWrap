@@ -4,26 +4,20 @@ const Air = require("../models/Air"); // Air 모델 임포트
 // POST /air - 데이터 저장
 exports.createAir = async (req, res) => {
     try {
-        const { classId, password, temp, hum, createdAt } = req.body;
+        const { classId, password, temp, hum } = req.body;
 
         // 필수 필드 체크
         if (!classId || !password || !temp || !hum) {
             return res.status(400).json({ error: "모든 필드를 입력해야 합니다." });
         }
 
-        // 새로운 Air 객체 생성
-        const newAir = new Air({
-            classId,
-            password,
-            temp,
-            hum,
-            createdAt,
-        });
+        // 새로운 Air 객체 생성 (createdAt은 자동 생성됨)
+        const newAir = new Air({ classId, password, temp, hum });
 
         // DB에 저장
         const savedAir = await newAir.save();
 
-        // 저장된 데이터 반환
+        // 저장된 데이터 반환 (password는 select:false라 자동으로 빠짐)
         res.status(201).json(savedAir);
     } catch (error) {
         console.error(error);
@@ -35,7 +29,7 @@ exports.createAir = async (req, res) => {
 exports.getAllAirs = async (req, res) => {
     try {
         console.log("GET /air 요청이 도달했습니다."); // 로그 추가
-        const airs = await Air.find().sort({ createdAt: -1 });  // 최신 데이터부터 조회
+        const airs = await Air.find().sort({ createdAt: -1 }); // 최신 데이터부터 조회
         res.status(200).json(airs);
     } catch (error) {
         console.error(error);

@@ -1,4 +1,3 @@
-// models/Air.js
 const mongoose = require("mongoose");
 
 const airSchema = new mongoose.Schema(
@@ -8,25 +7,23 @@ const airSchema = new mongoose.Schema(
             required: true,
             trim: true,
         },
+        // password가 꼭 필요하면 유지, 아니면 제거 가능
         password: {
             type: String,
             required: true,
             select: false,
         },
         temp: {
-            type: String,
+            type: Number,
             required: true,
         },
         hum: {
-            type: String,
+            type: Number,
             required: true,
         },
-        createdAt: {
-            type: Date, default: Date.now
-        }
     },
     {
-        timestamps: true,
+        timestamps: true, // createdAt, updatedAt 자동 관리
     }
 );
 
